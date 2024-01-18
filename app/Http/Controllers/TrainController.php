@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Train;
+use App\Models\TrainType;
 
 class TrainController extends Controller
 {
@@ -11,7 +13,8 @@ class TrainController extends Controller
      */
     public function index()
     {
-        //
+        $trains = Train::all();
+        return view('trains/index', ['trains'=>$trains]);
     }
 
     /**
@@ -19,7 +22,8 @@ class TrainController extends Controller
      */
     public function create()
     {
-        //
+        $tipos = TrainType::all();
+        return view('trains/create', ['tipos'=>$tipos]);
     }
 
     /**
@@ -27,7 +31,14 @@ class TrainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $train = new Train;
+        $train -> name = $request -> input('nombre');
+        $train -> passengers = $request -> input('pasajeros');
+        $train -> year = $request -> input('year');
+        $train -> train_type_id = $request -> input('tipo');
+        $train -> save();
+
+        return redirect('/trains');
     }
 
     /**
@@ -35,7 +46,8 @@ class TrainController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $train = Train::find($id);
+        return view('trains/show', ['train' => $train]);
     }
 
     /**
@@ -43,7 +55,9 @@ class TrainController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $tipos = TrainType::all();
+        $train = Train::find($id);
+        return view('trains/edit', ['train' => $train], ['tipos'=>$tipos]);
     }
 
     /**
@@ -51,7 +65,15 @@ class TrainController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $train = Train::find($id);
+
+        $train -> name = $request -> input('nombre');
+        $train -> passengers = $request -> input('pasajeros');
+        $train -> year = $request -> input('year');
+        $train -> train_type_id = $request -> input('tipo');
+        $train -> save();
+
+        return redirect('/trains');
     }
 
     /**

@@ -27,4 +27,4 @@ Route::resource('/ticketTypes', TicketTypeController::class);
 
 Route::resource('/trains',TrainController::class);
 
-Route::resource('/trainsTypes', TrainTypeController::class);
+Route::resource('/trainTypes', TrainTypeController::class);
