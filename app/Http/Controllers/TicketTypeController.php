@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TicketType;
+use Illuminate\Support\Facades\DB;
 
 class TicketTypeController extends Controller
 {
@@ -21,7 +22,7 @@ class TicketTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('ticketTypes/create');
     }
 
     /**
@@ -29,7 +30,11 @@ class TicketTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ticketType = new TicketType;
+        $ticketType -> type = $request -> input('tipo');
+        $ticketType -> save();
+
+        return redirect('/ticketTypes');
     }
 
     /**
@@ -37,7 +42,8 @@ class TicketTypeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ticketType = TicketType::find($id);
+        return view('ticketTypes/show', ['ticketType' => $ticketType]);
     }
 
     /**
@@ -45,7 +51,8 @@ class TicketTypeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ticketType = TicketType::find($id);
+        return view('ticketTypes/edit', ['ticketType' => $ticketType]);
     }
 
     /**
@@ -53,7 +60,12 @@ class TicketTypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $ticketType = TicketType::find($id); 
+
+        $ticketType -> type = $request -> input('tipo');
+        $ticketType -> save();
+
+        return redirect('/ticketTypes');
     }
 
     /**
@@ -61,6 +73,7 @@ class TicketTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('ticket_types')->where('id', "=", $id)->delete();
+        return redirect('/ticketTypes');
     }
 }

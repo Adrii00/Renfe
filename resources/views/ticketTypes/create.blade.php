@@ -4,23 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Editar Tren</title>
+    <title>Nuevo Tipo de Billete</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body class="bg-light">
 
     <div class="container mt-5">
-        <h1>Editar Tren</h1>
+        <h1 class="mb-4">Nuevo Tipo de Billete</h1>
 
-        <form action="{{ route('trainTypes.update', ['trainType' => $trainType->id]) }}" method="post">
-            @csrf
-            {{ method_field('PUT') }}
+        <form action="{{ route('ticketTypes.store') }}" method="post">
+            @csrf 
             <div class="form-group">
-                <label for="tipo">Tipo</label>
-                <input type="text" class="form-control" name="tipo" id="tipo" value="{{ $trainType->type }}" required>
+                <label for="tipo">Tipo de ticket</label>
+                <input type="text" name="tipo" class="form-control" id="tipo" required>
             </div>
-
-            <button type="submit" class="btn btn-primary">Editar</button>
+            <button type="submit" class="btn btn-primary">Crear</button>
         </form>
         <a href="{{ url('/') }}" class="btn btn-primary btn-sm float-right mt-2">Ir a la página principal</a>
     </div>

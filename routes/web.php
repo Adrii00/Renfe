@@ -18,7 +18,7 @@ use App\Http\Controllers\TrainTypeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::resource('/tickets', TicketController::class);

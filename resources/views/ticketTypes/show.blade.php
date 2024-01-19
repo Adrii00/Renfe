@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Editar Tren</title>
+    <title>Ver tipo de ticket</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body class="bg-light">
 
     <div class="container mt-5">
-        <h1>Editar Tren</h1>
+        <h1 class="mb-4">Ver tipo de ticket</h1>
 
-        <form action="{{ route('trainTypes.update', ['trainType' => $trainType->id]) }}" method="post">
-            @csrf
-            {{ method_field('PUT') }}
-            <div class="form-group">
-                <label for="tipo">Tipo</label>
-                <input type="text" class="form-control" name="tipo" id="tipo" value="{{ $trainType->type }}" required>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Tipo</h5>
+                <p class="card-text">{{ $ticketType->type }}</p>
+                <h5 class="card-title">Creado el</h5>
+                <p class="card-text">{{ $ticketType->created_at }}</p>
             </div>
+        </div>
 
-            <button type="submit" class="btn btn-primary">Editar</button>
-        </form>
         <a href="{{ url('/') }}" class="btn btn-primary btn-sm float-right mt-2">Ir a la página principal</a>
     </div>
 
@@ -30,3 +29,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+

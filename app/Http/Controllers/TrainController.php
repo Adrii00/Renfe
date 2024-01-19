@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Train;
 use App\Models\TrainType;
+use DB;
 
 class TrainController extends Controller
 {
@@ -57,7 +58,7 @@ class TrainController extends Controller
     {
         $tipos = TrainType::all();
         $train = Train::find($id);
-        return view('trains/edit', ['train' => $train], ['tipos'=>$tipos]);
+        return view('trains/edit', ['train' => $train, 'tipos'=>$tipos]);
     }
 
     /**
@@ -81,6 +82,7 @@ class TrainController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('trains')->where('id', "=", $id)->delete();
+        return redirect('/trains');
     }
 }

@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Editar Tren</title>
+    <title>Editar Tipo de Billete</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body class="bg-light">
 
     <div class="container mt-5">
-        <h1>Editar Tren</h1>
+        <h1 class="mb-4">Editar Tipo de Billete</h1>
 
-        <form action="{{ route('trainTypes.update', ['trainType' => $trainType->id]) }}" method="post">
+        <form action="{{ route('ticketTypes.update', ['ticketType' => $ticketType->id]) }}" method="post">
             @csrf
             {{ method_field('PUT') }}
             <div class="form-group">
                 <label for="tipo">Tipo</label>
-                <input type="text" class="form-control" name="tipo" id="tipo" value="{{ $trainType->type }}" required>
+                <input type="text" name="tipo" value="{{ $ticketType->type }}" class="form-control" id="tipo" required>
             </div>
-
             <button type="submit" class="btn btn-primary">Editar</button>
         </form>
         <a href="{{ url('/') }}" class="btn btn-primary btn-sm float-right mt-2">Ir a la página principal</a>
